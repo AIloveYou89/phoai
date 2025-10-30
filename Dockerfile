@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 WORKDIR /app
 
 # Install dependencies
-COPY requirements.txt .
+COPY phoai/requirements.txt .
 RUN python3 -m pip install --upgrade pip && pip3 install -r requirements.txt
 
 # Convert PhoWhisper model to CTranslate2 format
@@ -29,7 +29,7 @@ RUN echo "Converting vinai/PhoWhisper-${MODEL_SIZE} to CTranslate2..." && \
       --force
 
 # Copy handler
-COPY st_handler.py .
+COPY phoai/st_handler.py .
 
 # Environment variables
 ENV MODEL_DIR="/models/PhoWhisper-large-ct2" \
